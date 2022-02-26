@@ -10,6 +10,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="text-center mx-5">
+                <h1 className='mb-5'>Rental Online</h1>
                 <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

@@ -3,21 +3,22 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import './App.css';
 import Home from "./components/presentacionales/Home";
+import NavbarWithoutLogin from "./components/presentacionales/NavbarWithoutLogin";
+import Layout from "./components/presentacionales/Layout";
 
 function App() {
   return (
-    <div className="App mx-5">
-      <div className="d-flex col-8 flex-column mx-auto">
-        <div className="d-flex justify-content-center mb-5">
-          <h1>Rental Online</h1>
-        </div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-      </div>
-    </div>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<NavbarWithoutLogin />}>
+          <Route path="" element={<Layout />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 
