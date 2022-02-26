@@ -6,6 +6,7 @@ import Home from "./components/presentacionales/Home";
 import NavbarWithoutLogin from "./components/presentacionales/NavbarWithoutLogin";
 import Layout from "./components/presentacionales/Layout";
 import RegisterUser from "./components/contenedores/Users/RegisterUser";
+import LoginUser from "./components/contenedores/Users/LoginUser";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="registerUser" element={<RegisterUser />} />
+            <Route path="loginUser" element={<LoginUser />} />
           </Route>
         </Route>
       </Routes>

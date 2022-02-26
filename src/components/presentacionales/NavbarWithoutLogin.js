@@ -11,7 +11,7 @@ class NavbarWithoutLogin extends React.Component {
     render() {
         return (
             <div>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
                     <div className='mx-5'>
                     <Link to='/' className="navbar-brand mx-3">Home</Link>
                     <Link to='/loginUser' className="navbar-brand mx-3">Login</Link>
