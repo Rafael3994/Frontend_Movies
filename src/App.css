@@ -37,3 +37,9 @@
     transform: rotate(360deg);
   }
 }
+
+/* MY STYLES */
+
+.margin-right-5 {
+  margin-right: 5em;
+}

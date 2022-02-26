@@ -5,6 +5,7 @@ import './App.css';
 import Home from "./components/presentacionales/Home";
 import NavbarWithoutLogin from "./components/presentacionales/NavbarWithoutLogin";
 import Layout from "./components/presentacionales/Layout";
+import RegisterUser from "./components/contenedores/Users/RegisterUser";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="" element={<NavbarWithoutLogin />}>
           <Route path="" element={<Layout />}>
             <Route path="/" element={<Home />} />
+            <Route path="registerUser" element={<RegisterUser />} />
           </Route>
         </Route>
       </Routes>
