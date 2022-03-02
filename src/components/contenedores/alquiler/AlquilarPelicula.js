@@ -1,21 +1,31 @@
 import React from 'react';
 
 import { Link, Navigate } from "react-router-dom";
-// import MascotasService from "../services/mascotas.service";
-// import AuthService from "../services/auth.service";
+import PeliculasService from "../../../services/peliculas.service";
+import UserService from "../../../services/user.service";
 
 
 class AlquilarPelicula extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = { 
-        //     namePet: '',
-        //     tipo: 'Gato',
-        //     isMascotaCreate: false,
-        //     isToken:  AuthService.getCurrentUser() !== null
-        //  };
-        // this.handleChange = this.handleChange.bind(this);
+        this.state = { 
+            peliculas: [],
+            select: 'Gato',
+            isMascotaCreate: false,
+            isToken:  UserService.getCurrentUser() !== null
+         };
+        this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);        
+    }
+
+    componentDidMount () {
+        try {
+            PeliculasService.peliculaslist().then((res) =>{
+                console.log(res);
+            })
+        } catch (error) {
+            
+        }
     }
 
     handleSubmit(e) {
@@ -28,8 +38,8 @@ class AlquilarPelicula extends React.Component {
     }
 
     handleChange(e) {
-        // console.log(e.target.name, e.target.value);
-        // this.setState({ [e.target.name]: e.target.value });
+        console.log(e.target.name, e.target.value);
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {

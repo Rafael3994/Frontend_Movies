@@ -5,9 +5,13 @@ const API_URL = 'http://localhost:2022/users/';
 
 class UserService {
 
-    async login(email, password) {
+    getCurrentUser() {
+        return JSON.parse(localStorage.getItem('userToken'));;
+    }
+
+    login(email, password) {
         try {
-            const res = await axios.post(API_URL + 'login', {
+            const res = axios.post(API_URL + 'login', {
                 "email": email,
                 "password": password
             }).then(response => {
