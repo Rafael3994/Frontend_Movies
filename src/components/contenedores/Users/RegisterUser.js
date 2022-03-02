@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
-// import AuthService from "../services/auth.service";
+import UserService from "../../../services/user.service";
 
 class RegisterUser extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { 
+        this.state = {
             email: "",
-            password: "", 
-            nameUser: "", 
+            password: "",
+            nameUser: "",
             isLogged: false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -16,15 +16,19 @@ class RegisterUser extends React.Component {
     }
 
     handleSubmit(e) {
-        // e.preventDefault();
-        // AuthService.register(
-        //     this.state.email, this.state.password, 
-        //     this.state.nameUser, this.state.subname)
-        //         .then((res) => {
-        //             if(res) {
-        //                 this.setState({isLogged: true});
-        //             }
-        //         })
+        e.preventDefault();
+        try {
+            UserService.register(
+                this.state.email, this.state.password,
+                this.state.nameUser)
+                .then((res) => {
+                    if (res) {
+                        this.setState({ isLogged: true });
+                    }
+                })
+        } catch (error) {
+
+        }
     }
 
     handleChange(e) {
@@ -35,12 +39,11 @@ class RegisterUser extends React.Component {
         const { isLogged } = this.state;
         return (
             <div>
-                {/* {isLogged && (
-                    // TODO: CHANGE
-                    <Navigate to="/mostrarMascotas" replace={true} />
-                )} */}
+                {isLogged && (
+                    <Navigate to="/users" replace={true} />
+                )}
                 <h2 className="mb-5">Registrarse</h2>
-                <form /*onSubmit={this.handleSubmit}*/>
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label className="margin-right-5">Email
                             <input

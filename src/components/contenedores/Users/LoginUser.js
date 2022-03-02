@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Navigate } from "react-router-dom";
-// import AuthService from "../services/auth.service";
+import UserService from "../../../services/user.service";
 
 
 class LoginUser extends React.Component {
@@ -12,13 +12,15 @@ class LoginUser extends React.Component {
     }
 
     handleSubmit(e) {
-        // e.preventDefault();
-        // const res = AuthService.login(this.state.user, this.state.password)
-        // if (res) {
-        //     this.setState({ isLogged: true })
-        // } else {
-        //     alert('Datos incorrectos o usuario invalido.')
-        // }
+        e.preventDefault();
+        UserService.login(this.state.user, this.state.password)
+        .then((res) => {
+            if (res) {
+                this.setState({ isLogged: true })
+            } else {
+                alert('Datos incorrectos o usuario invalido.')
+            }
+        })
     }
 
     handleChange(e) {
@@ -30,7 +32,7 @@ class LoginUser extends React.Component {
         return (
             <div>
                 {isLogged && (
-                    <Navigate to="mostrarMascotas" replace={true} />
+                    <Navigate to="/users" replace={true} />
                 )}
                 <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>

@@ -19,17 +19,17 @@ function App() {
       <Routes>
         {/* WITHOUT LOGIN */}
         <Route path="" element={<NavbarWithoutLogin />}>
-          <Route path="" element={<Layout />}>
-            <Route path="/" element={<Home />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="" element={<Home />} />
             <Route path="registerUser" element={<RegisterUser />} />
             <Route path="loginUser" element={<LoginUser />} />
           </Route>
         </Route>
         {/* WITH LOGIN */}
         <Route path="" element={<NavbarWithLogin />}>
-          <Route path="" element={<Layout />}>
-            <Route path="/alquiler" element={<Alquiler />} />
-            <Route path="/modificarUser" element={<ModificarUser />} />
+          <Route path="users" element={<Layout />}>
+            <Route index element={<Alquiler />} />
+            <Route path="modificarUser" element={<ModificarUser />} />
           </Route>
         </Route>
       </Routes>
