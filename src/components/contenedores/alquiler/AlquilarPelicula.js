@@ -3,7 +3,6 @@ import React from 'react';
 import { Link, Navigate } from "react-router-dom";
 import PeliculasService from "../../../services/peliculas.service";
 import AlquilarService from "../../../services/alquilar.service";
-import UserService from "../../../services/user.service";
 
 
 class AlquilarPelicula extends React.Component {

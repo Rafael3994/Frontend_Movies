@@ -37,7 +37,7 @@ class UserService {
                 "password": password
             }).then(response => {
                 if (response.data.token) {
-                    localStorage.setItem("userToken", JSON.stringify(response.data));
+                    localStorage.setItem("userToken", JSON.stringify(response.data.token));
                 }
                 return true;
             }).catch((error) => {
@@ -66,11 +66,15 @@ class UserService {
 
     // TODO: Implementar
     logout() {
-        // try {
-        //   return axios.get(API_URL + 'logout', { headers: authHeader() })
-        //     .then(() => { return true }).catch(() => { return false });
-        // } catch (error) {
-        // }
+        try {
+            return axios.get(API_URL + 'logout', { headers: authHeader() })
+                .then(() => {
+                    console.log('BORRO');
+                    localStorage.removeItem('userToken');
+                    return true;
+                }).catch(() => { return false });
+        } catch (error) {
+        }
     }
 
 }
