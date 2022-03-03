@@ -12,12 +12,11 @@ class AlquilarService {
             const res = await axios.post(API_URL + 'alquilar', {
                 "idPelicula": pelicula
             }, { headers: authHeader() }).then(response => {
-                if (response.data) {
-                    console.log(response.data);
+                if (response.data.message === 'Pedido relized.') {
+                    return true;
                 } else {
-                    alert('No se pudo alquilar.')
+                    return false;
                 }
-                return true;
             }).catch((error) => {
                 return false
             });

@@ -11,7 +11,7 @@ class AlquilarPelicula extends React.Component {
         super(props);
         this.state = {
             peliculas: [],
-            select: 'Gato',
+            select: 'Spider-Man: No Way Home',
             isAlquilarCreate: false
         };
         this.handleChange = this.handleChange.bind(this);
@@ -33,30 +33,31 @@ class AlquilarPelicula extends React.Component {
         e.preventDefault();
         AlquilarService.alquilarPelicula(this.state.select).then((res) => {
             if (res) {
-                this.setState({ isAlquilarCreate: true });
+                alert('Pelicula alquilada.')
+            } else {
+                alert('No se pudo alquilar.')
             }
         })
     }
 
     handleChange(e) {
-        console.log(e.target.name, e.target.value);
+        // console.log(e.target.name, e.target.value);
         this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
         const { peliculas } = this.state;
-        console.log("peliculas ", peliculas);
+        // console.log("peliculas ", peliculas);
         return (
             <div className='mb-5'>
                 <h2 className='mb-4'>Alquilar Pelicula</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label className='margin-right-5 width-15-em'>
-                            <select name="pelicula" onChange={this.handleChange} required className="form-control" placeholder="Select its type">
+                            <select name="select" onChange={this.handleChange} required className="form-control" placeholder="Select its type">
                                 {
                                     peliculas && (
                                         peliculas.map((peli, i) => {
-                                            console.log(peli.title);
                                             return <option key={i} value={peli.title}>
                                                 {peli.title}
                                             </option>
