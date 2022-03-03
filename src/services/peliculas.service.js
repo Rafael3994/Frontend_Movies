@@ -20,7 +20,6 @@ class PeliculasService {
         } catch (error) {
         }
     }
-
 }
 
 export default new PeliculasService();
