@@ -1,15 +1,12 @@
 import React from 'react';
 import {  Outlet, Link  } from "react-router-dom";
 
+import UserService from './../../services/user.service';
+
 
 class NavbarWithLogin extends React.Component {
     constructor(props) {
         super(props);
-        this.logout = this.logout.bind(this);
-    }
-
-    logout = () => {
-        console.log('SALIR');
     }
 
     render() {
@@ -20,7 +17,7 @@ class NavbarWithLogin extends React.Component {
                         <Link to='/users' className="navbar-brand mx-3">Alquiler</Link>
                         <Link to='/peliculas' className="navbar-brand mx-3">Peliculas</Link>
                         <Link to='/users/modificarUser' className="navbar-brand mx-3">Modificar Perfil</Link>
-                        <button onClick={this.logout} className="navbar-brand mx-3">Logout</button>
+                        <Link to='/' onClick={UserService.logout} className="navbar-brand mx-3">Logout</Link>
                     </div>
                 </nav>
                 <Outlet/>
