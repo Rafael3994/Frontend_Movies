@@ -3,9 +3,8 @@ import { Link, Navigate } from "react-router-dom";
 
 function PeliculasAlquiladas(props) {
     // const [items, setItems] = useState([]);
-    // const [isLoaded, setIsLoaded] = useState(false);
-    // const [error, setError] = useState(null);
-    // const [isToken, setIsToken] = useState(AuthService.getCurrentUser() !== null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         // try {
@@ -22,9 +21,6 @@ function PeliculasAlquiladas(props) {
 
         return (
             <div>
-                {/* {!isToken && (
-                    <Navigate to="/" />
-                )} */}
                 <h2 className='mb-4 mt-4'>Peliculas Alquiladas</h2>
                 <table className="table">
                     <thead>

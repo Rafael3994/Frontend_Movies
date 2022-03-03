@@ -2,39 +2,40 @@ import React from 'react';
 
 import { Link, Navigate } from "react-router-dom";
 import PeliculasService from "../../../services/peliculas.service";
+import AlquilarService from "../../../services/alquilar.service";
 import UserService from "../../../services/user.service";
 
 
 class AlquilarPelicula extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             peliculas: [],
             select: 'Gato',
-            isMascotaCreate: false,
-            isToken:  UserService.getCurrentUser() !== null
-         };
+            isAlquilarCreate: false
+        };
         this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);        
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount () {
+    componentDidMount() {
         try {
-            PeliculasService.peliculaslist().then((res) =>{
-                console.log(res);
+            PeliculasService.peliculaslist().then((res) => {
+                this.setState({ peliculas: res.data })
+
             })
         } catch (error) {
-            
+
         }
     }
 
     handleSubmit(e) {
-        // e.preventDefault();
-        // MascotasService.register(this.state.namePet, this.state.tipo).then((res) => {
-        //     if(res) {
-        //         this.setState({ isMascotaCreate: true });
-        //     }
-        // })
+        e.preventDefault();
+        AlquilarService.alquilarPelicula(this.state.select).then((res) => {
+            if (res) {
+                this.setState({ isAlquilarCreate: true });
+            }
+        })
     }
 
     handleChange(e) {
@@ -43,19 +44,28 @@ class AlquilarPelicula extends React.Component {
     }
 
     render() {
+        const { peliculas } = this.state;
+        console.log("peliculas ", peliculas);
         return (
             <div className='mb-5'>
                 <h2 className='mb-4'>Alquilar Pelicula</h2>
-                <form /*onSubmit={this.handleSubmit}*/>
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label className='margin-right-5 width-15-em'>
-                            <select name="tipo" onChange={this.handleChange} required className="form-control" placeholder="Select its type">
-                            <option>Gato</option>
-                            <option>Perro</option>
-                            <option>Pajaro</option>
+                            <select name="pelicula" onChange={this.handleChange} required className="form-control" placeholder="Select its type">
+                                {
+                                    peliculas && (
+                                        peliculas.map((peli, i) => {
+                                            console.log(peli.title);
+                                            return <option key={i} value={peli.title}>
+                                                {peli.title}
+                                            </option>
+                                        })
+                                    )                                    
+                                }
                             </select>
                         </label>
-                        <button type="submit" className="btn btn-primary">Register</button>
+                        <button type="submit" className="btn btn-primary">Alquilar</button>
                     </div>
                 </form>
             </div>
