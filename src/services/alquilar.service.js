@@ -25,20 +25,17 @@ class AlquilarService {
         }
     }
 
-    alquilarlist(email, password, name) {
-        // try {
-        //     const res = axios.post(API_URL + "user", {
-        //         "name": name,
-        //         "email": email,
-        //         "password": password
-        //     }).then(() => {
-        //         return this.login(email, password);
-        //     }).catch(() => {
-        //         return false;
-        //     });
-        //     return res;
-        // } catch (error) {
-        // }
+    alquilarlist() {
+        try {
+            const res = axios.get(API_URL + "user", { headers: authHeader() })
+                .then((response) => {
+                    return response.data;
+                }).catch(() => {
+                    return false;
+                });
+            return res;
+        } catch (error) {
+        }
     }
 }
 

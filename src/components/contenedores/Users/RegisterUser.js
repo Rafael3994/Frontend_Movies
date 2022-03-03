@@ -22,6 +22,7 @@ class RegisterUser extends React.Component {
                 this.state.email, this.state.password,
                 this.state.nameUser)
                 .then((res) => {
+                    console.log("res ", res);
                     if (res) {
                         this.setState({ isLogged: true });
                     }
