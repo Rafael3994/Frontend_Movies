@@ -1,12 +1,33 @@
 import axios from "axios";
+import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:2022/users/';
-
 
 class UserService {
 
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('userToken'));;
+    }
+
+    async upadate(password, nameUser) {
+        try {
+            const res = await axios.put(API_URL + 'update', {
+                "password": password,
+                "nameUser": nameUser
+            }, { headers: authHeader() }).then(response => {
+                if (response) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }).catch((error) => {
+                return false
+            });
+            return res;
+
+        } catch (error) {
+
+        }
     }
 
     login(email, password) {
