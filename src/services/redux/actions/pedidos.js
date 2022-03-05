@@ -1,18 +1,17 @@
 import {
-    PEDIDOS_USER
+    SHOW_PEDIDOS_USER
 } from "./types";
 
 import AlquilarService from "./../../alquilar.service.js";
 
 
-export const pedidosUser = () => async (dispatch) => {
+export const pedidosUser = async () => {
     try {
         const res = await AlquilarService.alquilarlist;
-
-        dispatch({
-            type: PEDIDOS_USER,
+        return {
+            type: SHOW_PEDIDOS_USER,
             payload: res.data,
-        });
+        };
     } catch (err) {
         console.log(err);
     }

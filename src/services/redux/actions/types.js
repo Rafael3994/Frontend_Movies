@@ -1,1 +1,1 @@
-export const PEDIDOS_USER = "PEDIDOS_USER";
+export const SHOW_PEDIDOS_USER = "SHOW_PEDIDOS_USER";

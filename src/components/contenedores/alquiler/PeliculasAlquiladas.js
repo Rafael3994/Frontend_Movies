@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Link, Navigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
     pedidosUser
 } from "../../../services/redux/actions/pedidos";
@@ -11,9 +11,7 @@ function PeliculasAlquiladas(props) {
     const [items, setItems] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
-    const { pedidos } = props;
-
-
+    const { pedidos } = useSelector(state => state);
 
     useEffect(() => {
         try {            
@@ -49,8 +47,8 @@ function PeliculasAlquiladas(props) {
 
                 <tbody>
                     {
-                        isLoaded && (
-                            items.map((item, i) => {
+                        pedidos && (
+                            pedidos.map((item, i) => {
                                 console.log(item.idPelicula);
                                 return <tr key={i}>
                                     <th scope="col"></th>
@@ -68,11 +66,4 @@ function PeliculasAlquiladas(props) {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        pedidos: state.pedidos,
-    };
-};
-
-export default connect(mapStateToProps, {
-})(PeliculasAlquiladas);
+export default PeliculasAlquiladas;

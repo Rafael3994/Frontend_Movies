@@ -1,5 +1,5 @@
 import {
-    PEDIDOS_USER
+    SHOW_PEDIDOS_USER
 } from "./../actions/types";
 import alquilarService from './../../alquilar.service'
 
@@ -14,7 +14,7 @@ function pedidosReducer(pedidos = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
-        case PEDIDOS_USER:
+        case SHOW_PEDIDOS_USER:
             return pedidos;
 
         default:
