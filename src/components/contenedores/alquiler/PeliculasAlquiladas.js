@@ -1,5 +1,9 @@
 import { React, useState, useEffect } from 'react';
 import { Link, Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+    pedidosUser
+} from "../../../services/redux/actions/pedidos";
 
 import AlquilarService from "../../../services/alquilar.service";
 
@@ -7,23 +11,27 @@ function PeliculasAlquiladas(props) {
     const [items, setItems] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+    const { pedidos } = props;
+
+
 
     useEffect(() => {
-        try {
-            AlquilarService.alquilarlist().then(response => {
-                if (response === false) {
-                    alert('No se puede mostrar los pedidos');
-                } else {
-                    console.log(response);
-                    setItems(response);
-                    setIsLoaded(true)
-                }
-            }).catch(error => {
-                setIsLoaded(false);
-            })
+        try {            
+            // AlquilarService.alquilarlist().then(response => {
+            //     if (response === false) {
+            //         alert('No se puede mostrar los pedidos');
+            //     } else {
+            //         console.log(response);
+            //         setItems(response);
+            //         setIsLoaded(true)
+            //     }
+            // }).catch(error => {
+            //     setIsLoaded(false);
+            // })
         } catch (error) {
         }
     }, []);
+
 
 
     return (
@@ -38,6 +46,7 @@ function PeliculasAlquiladas(props) {
                         <th scope="col">Fecha de entrega</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {
                         isLoaded && (
@@ -59,4 +68,11 @@ function PeliculasAlquiladas(props) {
     );
 }
 
-export default PeliculasAlquiladas;
+const mapStateToProps = (state) => {
+    return {
+        pedidos: state.pedidos,
+    };
+};
+
+export default connect(mapStateToProps, {
+})(PeliculasAlquiladas);

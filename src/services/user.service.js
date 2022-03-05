@@ -64,7 +64,6 @@ class UserService {
         }
     }
 
-    // TODO: Implementar
     logout() {
         try {
             return axios.get(API_URL + 'logout', { headers: authHeader() })
