@@ -16,7 +16,6 @@ function PeliculasAlquiladas(props) {
 
     useEffect(() => {
         try {          
-            console.log('useEffect');
             dispatch(pedidosUser)(dispatch);
         } catch (error) {
         }

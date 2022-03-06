@@ -19,7 +19,7 @@ export const pedidosUser = () => (dispatch) => {
 
 export const pedidosSucces = (pedidos) => {
     try {
-        console.log("pedidos ", pedidos);
+        // console.log("pedidos ", pedidos);
         return {
             type: SHOW_PEDIDOS_USER,
             payload: pedidos,

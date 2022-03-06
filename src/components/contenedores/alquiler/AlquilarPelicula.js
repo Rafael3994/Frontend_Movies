@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Link, Navigate } from "react-router-dom";
 import PeliculasService from "../../../services/peliculas.service";
 import AlquilarService from "../../../services/alquilar.service";
+import { useDispatch, useSelector } from 'react-redux';
 
 
-class AlquilarPelicula extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            peliculas: [],
-            select: 'Spider-Man: No Way Home',
-            isAlquilarCreate: false
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+function AlquilarPelicula(props) {
 
-    componentDidMount() {
+    const dispatch = useDispatch;
+    const [peliculas, setPeliculas] = useState([]);
+    const [select, setSelect] = useState('Spider-Man: No Way Home');
+    const [isAlquilarCreate, setIsAlquilarCreate] = useState(false);
+
+    useEffect(() => {
         try {
             PeliculasService.peliculaslist().then((res) => {
-                this.setState({ peliculas: res.data })
-
-            })
+                setPeliculas(res.data);
+            });
+            
         } catch (error) {
-
+            console.log(error);
         }
-    }
+    }, []);
 
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        AlquilarService.alquilarPelicula(this.state.select).then((res) => {
+        // console.log(select);
+        AlquilarService.alquilarPelicula(select).then((res) => {
             if (res) {
                 alert('Pelicula alquilada.')
             } else {
@@ -39,38 +36,35 @@ class AlquilarPelicula extends React.Component {
         })
     }
 
-    handleChange(e) {
-        // console.log(e.target.name, e.target.value);
-        this.setState({ [e.target.name]: e.target.value });
+    const handleChange = (e) => {
+        console.log(e.target.name, e.target.value);
+        setSelect(e.target.value);
     }
 
-    render() {
-        const { peliculas } = this.state;
-        // console.log("peliculas ", peliculas);
-        return (
-            <div className='mb-5'>
-                <h2 className='mb-4'>Alquilar Pelicula</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label className='margin-right-5 width-15-em'>
-                            <select name="select" onChange={this.handleChange} required className="form-control" placeholder="Select its type">
-                                {
-                                    peliculas && (
-                                        peliculas.map((peli, i) => {
-                                            return <option key={i} value={peli.title}>
-                                                {peli.title}
-                                            </option>
-                                        })
-                                    )                                    
-                                }
-                            </select>
-                        </label>
-                        <button type="submit" className="btn btn-primary">Alquilar</button>
-                    </div>
-                </form>
-            </div>
+    return (
+        <div className='mb-5'>
+            <h2 className='mb-4'>Alquilar Pelicula</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label className='margin-right-5 width-15-em'>
+                        <select name="select" onChange={handleChange} required className="form-control" placeholder="Select its type">
+                            {
+                                peliculas && (
+                                    peliculas.map((peli, i) => {
+                                        return <option key={i} value={peli.title}>
+                                            {peli.title}
+                                        </option>
+                                    })
+                                )
+                            }
+                        </select>
+                    </label>
+                    <button type="submit" className="btn btn-primary">Alquilar</button>
+                </div>
+            </form>
+        </div>
 
-        );
-    }
+    );
 }
+
 export default AlquilarPelicula;
