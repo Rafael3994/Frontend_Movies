@@ -8,24 +8,16 @@ import {
 import AlquilarService from "../../../services/alquilar.service";
 
 function PeliculasAlquiladas(props) {
+    const dispatch = useDispatch();
     const [items, setItems] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
     const { pedidos } = useSelector(state => state);
 
     useEffect(() => {
-        try {            
-            // AlquilarService.alquilarlist().then(response => {
-            //     if (response === false) {
-            //         alert('No se puede mostrar los pedidos');
-            //     } else {
-            //         console.log(response);
-            //         setItems(response);
-            //         setIsLoaded(true)
-            //     }
-            // }).catch(error => {
-            //     setIsLoaded(false);
-            // })
+        try {          
+            console.log('useEffect');
+            dispatch(pedidosUser)(dispatch);
         } catch (error) {
         }
     }, []);
@@ -49,7 +41,7 @@ function PeliculasAlquiladas(props) {
                     {
                         pedidos && (
                             pedidos.map((item, i) => {
-                                console.log(item.idPelicula);
+                                // console.log(item.idPelicula);
                                 return <tr key={i}>
                                     <th scope="col"></th>
                                     <th scope="col">{item.idPelicula}</th>
