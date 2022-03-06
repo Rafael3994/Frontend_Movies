@@ -13,7 +13,7 @@ class AlquilarService {
                 "idPelicula": pelicula
             }, { headers: authHeader() }).then(response => {
                 if (response.data.message === 'Pedido relized.') {
-                    return true;
+                    return response.data;
                 } else {
                     return false;
                 }

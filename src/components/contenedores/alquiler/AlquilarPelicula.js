@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from "react-router-dom";
+
 import PeliculasService from "../../../services/peliculas.service";
 import AlquilarService from "../../../services/alquilar.service";
-import { useDispatch, useSelector } from 'react-redux';
-
+import { newPedido, pedidosUser } from "./../../../services/redux/actions/pedidos"
 
 function AlquilarPelicula(props) {
 
@@ -18,22 +18,28 @@ function AlquilarPelicula(props) {
             PeliculasService.peliculaslist().then((res) => {
                 setPeliculas(res.data);
             });
-            
+
         } catch (error) {
             console.log(error);
         }
     }, []);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        // console.log(select);
-        AlquilarService.alquilarPelicula(select).then((res) => {
-            if (res) {
-                alert('Pelicula alquilada.')
-            } else {
-                alert('No se pudo alquilar.')
-            }
-        })
+        try {
+            e.preventDefault();
+            // console.log(select);
+            // DISPATCH
+            AlquilarService.alquilarPelicula(select).then((res) => {
+                if (res) {
+                    dispatch(pedidosUser)(dispatch)
+                    alert('Pelicula alquilada.')
+                } else {
+                    alert('No se pudo alquilar.')
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const handleChange = (e) => {
