@@ -16,10 +16,10 @@ function PeliculasAlquiladas(props) {
 
     useEffect(() => {
         try {          
-            dispatch(pedidosUser)(dispatch);
+            dispatch(pedidosUser());
         } catch (error) {
         }
-    }, []);
+    }, [pedidos]);
 
 
 

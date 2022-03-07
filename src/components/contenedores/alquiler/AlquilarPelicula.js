@@ -29,14 +29,15 @@ function AlquilarPelicula(props) {
             e.preventDefault();
             // console.log(select);
             // DISPATCH
-            AlquilarService.alquilarPelicula(select).then((res) => {
-                if (res) {
-                    dispatch(pedidosUser)(dispatch)
-                    alert('Pelicula alquilada.')
-                } else {
-                    alert('No se pudo alquilar.')
-                }
-            })
+            dispatch(pedidosUser())
+            // AlquilarService.alquilarPelicula(select).then((res) => {
+            //     if (res) {
+            //         dispatch(pedidosUser)(dispatch)
+            //         alert('Pelicula alquilada.')
+            //     } else {
+            //         alert('No se pudo alquilar.')
+            //     }
+            // })
         } catch (error) {
             console.log(error);
         }
