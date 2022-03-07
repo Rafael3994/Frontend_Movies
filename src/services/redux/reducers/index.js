@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import pedidosReducer from "./pedidos";
+import { errorReducer } from "./errors";
+import rentalsReducer from "./pedidos";
 
 export default combineReducers({
-    pedidos: pedidosReducer,
+    rentals: rentalsReducer,
+    error: errorReducer
 });

@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { Link, Navigate } from "react-router-dom";
 
 import PeliculasService from "../../../services/peliculas.service";
 import AlquilarService from "../../../services/alquilar.service";
-import { newPedido, pedidosUser } from "./../../../services/redux/actions/pedidos"
+import { newRental } from "./../../../services/redux/actions/pedidos"
+import ErrorNotification from '../../presentacionales/ErrorNotification';
 
 function AlquilarPelicula(props) {
 
-    const dispatch = useDispatch;
+    
     const [peliculas, setPeliculas] = useState([]);
     const [select, setSelect] = useState('Spider-Man: No Way Home');
-    const [isAlquilarCreate, setIsAlquilarCreate] = useState(false);
+    //const [isAlquilarCreate, setIsAlquilarCreate] = useState(false);
+    const store = useStore()
+    const dispatch = useDispatch;
 
     useEffect(() => {
         try {
@@ -22,22 +25,23 @@ function AlquilarPelicula(props) {
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [store]);
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
-            // console.log(select);
+            
+            console.log(select);
             // DISPATCH
-            dispatch(pedidosUser())
-            // AlquilarService.alquilarPelicula(select).then((res) => {
-            //     if (res) {
-            //         dispatch(pedidosUser)(dispatch)
-            //         alert('Pelicula alquilada.')
-            //     } else {
-            //         alert('No se pudo alquilar.')
-            //     }
-            // })
+            store.dispatch(newRental(select));
+            /*AlquilarService.alquilarPelicula(select).then((res) => {
+                if (res) {
+                    dispatch(pedidosUser())(dispatch)
+                    alert('Pelicula alquilada.')
+                } else {
+                    alert('No se pudo alquilar.')
+                }
+            })*/
         } catch (error) {
             console.log(error);
         }
@@ -69,6 +73,7 @@ function AlquilarPelicula(props) {
                     <button type="submit" className="btn btn-primary">Alquilar</button>
                 </div>
             </form>
+            <ErrorNotification />
         </div>
 
     );
