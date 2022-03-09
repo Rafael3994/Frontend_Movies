@@ -3,7 +3,7 @@ import authHeader from './auth-header';
 
 
 
-const API_URL = 'http://localhost:2022/peliculas';
+const API_URL = 'http://localhost:2021/peliculas';
 
 
 class PeliculasService {

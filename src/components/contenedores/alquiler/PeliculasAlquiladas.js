@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import { Link, Navigate } from "react-router-dom";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector, useStore } from "react-redux";
 import {
+    fetchRentals,
     pedidosUser
 } from "../../../services/redux/actions/pedidos";
 
@@ -9,14 +10,13 @@ import AlquilarService from "../../../services/alquilar.service";
 
 function PeliculasAlquiladas(props) {
     const dispatch = useDispatch();
-    const [items, setItems] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [error, setError] = useState(null);
-    const { pedidos } = useSelector(state => state);
+    const { rentals } = useSelector(state => state);
+    const store = useStore();
 
     useEffect(() => {
-        try {          
-            dispatch(pedidosUser)(dispatch);
+        try {    
+            //console.log(store.getState().);      
+            dispatch(fetchRentals());
         } catch (error) {
         }
     }, []);
@@ -38,8 +38,8 @@ function PeliculasAlquiladas(props) {
 
                 <tbody>
                     {
-                        pedidos && (
-                            pedidos.map((item, i) => {
+                        rentals && (
+                            rentals.map((item, i) => {
                                 // console.log(item.idPelicula);
                                 return <tr key={i}>
                                     <th scope="col"></th>

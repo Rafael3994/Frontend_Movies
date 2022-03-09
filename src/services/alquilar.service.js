@@ -3,26 +3,14 @@ import axios from "axios";
 import authHeader from './auth-header';
 
 
-const API_URL = 'http://localhost:2022/pedidos/';
+const API_URL = 'http://localhost:2021/pedidos/';
 
 class AlquilarService {
 
-    async alquilarPelicula(pelicula) {
-        try {
-            const res = await axios.post(API_URL + 'alquilar', {
+    alquilarPelicula(pelicula) {
+        return axios.post(API_URL + 'alquilar', {
                 "idPelicula": pelicula
-            }, { headers: authHeader() }).then(response => {
-                if (response.data.message === 'Pedido relized.') {
-                    return response.data;
-                } else {
-                    return false;
-                }
-            }).catch((error) => {
-                return false
-            });
-            return res;
-        } catch (error) {
-        }
+            }, { headers: authHeader() });
     }
 
     alquilarlist() {

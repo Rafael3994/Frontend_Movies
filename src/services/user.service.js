@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:2022/users/';
+const API_URL = 'http://localhost:2021/users/';
 
 class UserService {
 
@@ -50,16 +50,18 @@ class UserService {
 
     register(email, password, name) {
         try {
-            const res = axios.post(API_URL + "register", {
+            console.log(API_URL)
+            return axios.post(API_URL + "register", {
                 "name": name,
                 "email": email,
                 "password": password
             }).then(() => {
                 return this.login(email, password);
-            }).catch(() => {
+            }).catch((err) => {
+                console.log(err)
                 return false;
             });
-            return res;
+            //return res;
         } catch (error) {
         }
     }
