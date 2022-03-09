@@ -12,7 +12,6 @@ function AlquilarPelicula(props) {
     
     const [peliculas, setPeliculas] = useState([]);
     const [select, setSelect] = useState('Spider-Man: No Way Home');
-    //const [isAlquilarCreate, setIsAlquilarCreate] = useState(false);
     const store = useStore()
     const dispatch = useDispatch;
 
