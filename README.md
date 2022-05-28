@@ -1,6 +1,8 @@
-# Proyecto7_Frontend_Movies
+# Frontend_Movies
 
-Este proyecto trata de hacer el frontend de la API ya creada del proyecto4_Backend_Movies
+![presentacion](./public/readme/presentacion.PNG)
+
+Este proyecto trata de hacer el frontend de la API ya creada del Backend_Movies
 
 ## Comenzando 🚀
 
@@ -11,11 +13,11 @@ Estas instrucciones te permitirán obtener una copia del proyecto en funcionamie
 
 * Clona el repositorio a tu maquina local la API
 ```
-git clone https://github.com/Rafael3994/Proyecto4_Backend_Movies.git
+git clone https://github.com/Rafael3994/Backend_Movies.git
 ```
 * Clona este repositorio
 ```
-git clone https://github.com/Rafael3994/Proyecto7_Frontend_Movies.git
+git clone https://github.com/Rafael3994/Frontend_Movies.git
 ```
 * Accedemos a la carpeta e instalamos las dependencias.
 
